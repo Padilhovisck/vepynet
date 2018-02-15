@@ -1,7 +1,7 @@
 import requests
 import base64
 
-with open("C:\\Users\\Eduardo\\PycharmProjects\\vepynet\\PDF\\Aditivo.pdf", "rb") as pdf_file:
+with open("C:\\Users\\eduar\PycharmProjects\\vepynet\PDF\\AditivoOurolacOp100.pdf", "rb") as pdf_file:
     encoded_string = base64.b64encode(pdf_file.read())
 
 r = requests.post('http://localhost:5000/api/values',
@@ -13,4 +13,3 @@ r = requests.post('http://localhost:5000/api/values',
                   )
 print(r.status_code)
 print(r.json())
-

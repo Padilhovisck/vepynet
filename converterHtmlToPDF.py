@@ -1,9 +1,12 @@
 import jinja2
 import pdfkit
 
-from assinanetpost import Assinanet
+from assinanetpost import sendAssinaNetPost
 
-#Enviar arquivo PDF para assinanet
+#Enviar arquivo PDF para assinanet - <TOKEN>
+from commands import gravar_arquivo
+
+
 def sendAssinaNet(file):
     #parametros da (API.NET)
     print(file)
@@ -14,14 +17,22 @@ def sendAssinaNet(file):
     #assinanet = Assinanet(consumer_key, consumer_secret, token_key, token_secret)
     #assinanet.sendpdf(file)
 
-#criando o arquivo PDF
+#criando o arquivo PDF and Request assinanet
 def create_PDF(html, params):
     path_wkthmltopdf = params['wkhtmltopdf']
     config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
     pdf = pdfkit.from_string(html, ("Pdf\\"+params['namefilepdf']), configuration=config)
     if pdf:
-        sendAssinaNet(params['namefilepdf'])
-        return ("Pdf\\"+params['namefilepdf'])
+        gravar_arquivo('log.txt', 'Aditivo gerado com sucesso!')
+        gravar_arquivo('log.txt', 'Chamando API (POST)...')
+        params["RotaPDFGerado"] = params['filejson'].replace('File', 'Pdf').replace('.json', '.pdf')
+        status_code = sendAssinaNetPost(params)
+        if status_code == 200:
+            gravar_arquivo('log.txt', ('Arquivo enviado com sucesso <status:' + str(status_code) + '>'))
+            return True
+        else:
+            gravar_arquivo('log.txt', ('Problema ao enviar o arquivo <status:' + str(status_code) + '>'))
+            return False
 
 #renderizando conforme os dados
 def render_html(params):
@@ -34,16 +45,20 @@ def render_html(params):
 
 #metodos de conversão HTML To PDF
 def create_htmlTopdf(params):
-    return create_PDF(render_html(params), params)
+    html = render_html(params)
+    if html:
+        gravar_arquivo('log.txt', ('Arquivo HTML (renderizado) com sucesso!'))
+        return create_PDF(html, params)
 
 #metodo das classes de importação para Aditivo
 def gerarAditivoPDF(contrato, cedente, operacao, originador, itens, params):
     favorites = ["chocolates", "lunar eclipses", "rabbits"]
     templateVars = {"contrato_Cliente": contrato.Cliente, "cedente_Empresa": cedente.Empresa, "favorites": favorites}
     params["templateVars"] = templateVars
+    gravar_arquivo('log.txt', ('Criando variaves para substituição no arquivo HTML.'))
     ret = create_htmlTopdf(params)
     if ret:
-         print('Aditivo Gerado com Sucesso!', ret)
+        gravar_arquivo('log.txt', 'Fim da execução...')
 
 #metodo das classes de importação para Contrato
 def gerarContratoPDF(params):

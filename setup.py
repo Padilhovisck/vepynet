@@ -5,7 +5,7 @@ from cx_Freeze import setup, Executable
 includefiles = ['Bin', 'File', 'Html', 'Pdf', 'Readme.txt']
 includes = []
 build_exe_options = {"includes": includes,
-                     "packages": ["os", "encodings", "asyncio"],
+                     "packages": ["os", "idna", "encodings", "asyncio", "requests", "base64"],
                      "excludes": ["tkinter"],
                      "include_files": includefiles}
 
