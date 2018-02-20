@@ -1,12 +1,12 @@
 import jinja2
 import pdfkit
 
-from assinanetpost import sendAssinaNetPost
+from assinanetpost import sendAssinaNetPost, generateBase64encode
 
 #Enviar arquivo PDF para assinanet - <TOKEN>
 from commands import gravar_arquivo
 
-
+# Token <assinatura>
 def sendAssinaNet(file):
     #parametros da (API.NET)
     print(file)
@@ -17,7 +17,21 @@ def sendAssinaNet(file):
     #assinanet = Assinanet(consumer_key, consumer_secret, token_key, token_secret)
     #assinanet.sendpdf(file)
 
-#criando o arquivo PDF and Request assinanet
+# Call Request assinanet
+def encoded_string(params):
+
+    # criando a rota do arquivo PDF : encoded
+    x = params["filejson"].replace('File', 'Pdf')
+    index = (len(x.split('\\')) - 1)
+    i = x.split('\\', index)
+    domain_name = i[index]
+    params["RotaPDFGerado"] = x.replace(domain_name, params["namefilepdf"])
+
+    # chamando metodo encode base64
+    encoded_string = generateBase64encode(params["RotaPDFGerado"])
+    return encoded_string.decode('utf-8')
+
+#criando o arquivo PDF
 def create_PDF(html, params):
     path_wkthmltopdf = params['wkhtmltopdf']
     config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
@@ -25,14 +39,7 @@ def create_PDF(html, params):
     if pdf:
         gravar_arquivo('log.txt', 'Aditivo gerado com sucesso!')
         gravar_arquivo('log.txt', 'Chamando API (POST)...')
-        params["RotaPDFGerado"] = params['filejson'].replace('File', 'Pdf').replace('.json', '.pdf')
-        status_code = sendAssinaNetPost(params)
-        if status_code == 200:
-            gravar_arquivo('log.txt', ('Arquivo enviado com sucesso <status:' + str(status_code) + '>'))
-            return True
-        else:
-            gravar_arquivo('log.txt', ('Problema ao enviar o arquivo <status:' + str(status_code) + '>'))
-            return False
+        return encoded_string(params)
 
 #renderizando conforme os dados
 def render_html(params):
@@ -40,31 +47,35 @@ def render_html(params):
     templateEnv = jinja2.Environment(loader=templateLoader)
     template_file = 'HTML/' + params['templatehtml']
     template = templateEnv.get_template(template_file)
+    print(params['templateVars'])
     html = template.render(params['templateVars'])
     return html
 
 #metodos de conversão HTML To PDF
 def create_htmlTopdf(params):
+    # retorna o Html com as variaveis substituidas
     html = render_html(params)
     if html:
         gravar_arquivo('log.txt', ('Arquivo HTML (renderizado) com sucesso!'))
+        # retira o arquivo PDF e envia via requests
         return create_PDF(html, params)
 
 #metodo das classes de importação para Aditivo
-def gerarAditivoPDF(contrato, cedente, operacao, originador, itens, params):
-    favorites = ["chocolates", "lunar eclipses", "rabbits"]
-    templateVars = {"contrato_Cliente": contrato.Cliente, "cedente_Empresa": cedente.Empresa, "favorites": favorites}
-    params["templateVars"] = templateVars
-    gravar_arquivo('log.txt', ('Criando variaves para substituição no arquivo HTML.'))
+def gerarAditivoPDF(params):
     ret = create_htmlTopdf(params)
     if ret:
-        gravar_arquivo('log.txt', 'Fim da execução...')
+        gravar_arquivo('log.txt', 'Montagem do dicionario request')
+        return ret
 
 #metodo das classes de importação para Contrato
 def gerarContratoPDF(params):
     favorites = ["chocolates", "lunar eclipses", "rabbits"]
-    templateVars = {"contrato_Cliente": "VENTURE SERVICE", "cedente_Empresa": "EPS BUSINESS", "favorites": favorites}
+    templateVars = {"cedente_Dtcontrato": params['Dtcontrato'],
+                    "cedente_NumeroContratoMae": params['NumeroContratoMae'],
+                    "operacao_Numero":  params['Numero'],
+                    "favorites": favorites}
     params["templateVars"] = templateVars
-    ret = create_htmlTopdf(params)
-    if ret:
-         print('Contrato Gerado com Sucesso!')
+    print(params)
+    # ret = create_htmlTopdf(params)
+    # if ret:
+    #      print('Contrato Gerado com Sucesso!')

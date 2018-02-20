@@ -1,23 +1,39 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
- <html>
-     <head>
-         <title>New Title</title>
-         <style type="text/css">
+<html>
+<head>
+    <title>Aditivo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css">
              body {
                  font-weight: 200;
                  font-size: 14px;
              }
              .header {
-                 font-size: 20px;
+                 font-size: 14px;
                  font-weight: 100;
                  text-align: center;
                  color: #007cae;
+             }
+             .header p {
+                font-size: 18px;
+                font-weight: 100;
+                font-family: Arial, Helvetica, sans-serif;
+                width: auto;
+                height: auto;
+                border: 2px solid blue;
+                text-align: center;
+                color: #0000ff;
              }
              .title {
                  font-size: 22px;
                  font-weight: 100;
                 /* text-align: right;*/
                 padding: 10px 20px 0px 20px;
+             }
+             .title p {
+                 font-size: 18px;
+                 font-weight: 100;
+                 text-align: center;
              }
              .title span {
                  color: #007cae;
@@ -34,85 +50,186 @@
                  color: #333; /* old IE */
                  background-color: #fff; /* Modern Browsers */
              }
-         </style>
-     </head>
-     <body>
-         <div class='wrapper'>
-             <div class='header'>
-                 <p class='title'>ADITIVO - {{ contrato_Cliente }}</p>
-             </div>
-         </div>
-         <div class='details'>
-             Cliente: {{ contrato_Cliente }}<br/>
-             Cedente:  {{ cedente_Empresa }}<br/>
-             <hr class='hrItem' />
-         </div>
-        <div class="details">
-            <p style="text-align: center;"><strong>ADITIVO DE FOMENTO MERCANTIL</strong></p>
-            <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet
-                quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est
-                et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet,
-                wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus
-                enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus
-                faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui
-                mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
-            </p>
-        </div>
-        <div class="details">
-            <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet
-                quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est
-                et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet,
-                wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus
-                enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus
-                faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui
-                mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
-            </p>
-        </div>
-        <div class="details">
-            <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet
-                quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est
-                et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet,
-                wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus
-                enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus
-                faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui
-                mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
-            </p>
-        </div>
-        <div class="details">
-            <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet
-                quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est
-                et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet,
-                wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus
-                enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus
-                faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui
-                mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
-            </p>
-        </div>
-        <div class="details">
-            <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet
-                quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est
-                et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet,
-                wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus
-                enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus
-                faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui
-                mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
-            </p>
-        </div>
-        <div class="details">
-            <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet
-                quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est
-                et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet,
-                wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus
-                enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus
-                faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui
-                mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
-            </p>
-        </div>
-     </body>
- </html>
+             .hr {
+                display: block;
+                margin-top: 0.5em;
+                margin-bottom: 0.5em;
+                margin-left: auto;
+                margin-right: auto;
+                border-style: inset;
+                border-width: 1px;
+                border-color: #0000ff;
+               }
+             p.borda2 {
+                border-style: solid; /* estilos de borda diferentes para cima-baixo e esquerda-direita */
+                border-color: #0000ff; /* uma cor de borda para cada lado */
+                padding: 10px;
+                text-align: center;
+                font-size: 18px;
+                font-weight: 100;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #0000ff;
+             }
+             .tbody td {
+                 font-size: 14px;
+                 font-weight: 100;
+                 font-family: Arial, Helvetica, sans-serif;
+             }
+             .padrao {
+                 font-size: 14px;
+                 font-weight: 100;
+                 font-family: Arial, Helvetica, sans-serif;
+             }
+             .td_grid {
+                 border: 1px solid #dddddd;
+                 text-gn: left;
+                 padding: 8px;
+             }
+             .th_grid {
+                 border: 1px solid #dddddd;
+                 text-gn: left;
+                 padding: 8px;
+                 font-weight: bold;
+                 text-align: left;
+             }
+    </style>
+</head>
+<body>
+
+<!--TERMO ADITIVO-->
+<div>
+    <p class="borda2"><em>TERMO ADITIVO AO CONTRATO DE FOMENTO MERCANTIL</em></p>
+    <p class="padrao" style="text-align: center;">
+        Termo Aditivo ao Contrato de Fomento Mercantil -
+        Convencional N&ordm; {{ cedente_NumeroContratoMae }} / {{ operacao_Numero }}
+        de {{ cedente_Dtcontrato }}
+    </p>
+</div>
+
+<!--CONTRATANTE-->
+<table>
+    <colgroup>
+        <col width="650">
+    </colgroup>
+    <tbody class="tbody td">
+    <tr>
+        <td style="font-weight: bold; padding: 0px 0px 10px 0px;"> CONTRATANTE</td>
+    </tr>
+    <tr>
+        <td>Empresa: <a style="font-weight: bold"> {{ cedente_Razao }}</a></td>
+        <td>CNPJ (MF): <a style="font-weight: bold"> {{ cedente_Cnpjcpf }}</a></td>
+    </tr>
+
+    </tbody>
+</table>
+<br>
+<!--CONTRATADA-->
+<table>
+    <colgroup>
+        <col width="650">
+    </colgroup>
+    <tbody class="tbody td">
+    <tr>
+        <td style="font-weight: bold; padding: 0px 0px 10px 0px;"> CONTRATADA</td>
+    </tr>
+    <tr>
+        <td>Empresa: <a style="font-weight: bold"> {{ contrato_Cliente }}</a></td>
+        <td>CNPJ (MF): <a style="font-weight: bold"> {{ contrato_Cnpjcpf }}</a></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Reg. Anfac n&ordm; <a style="font-weight: bold"> {{ contrato_Registro }}</a></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<!--RESP. SOLIDÁRIOS-->
+<table>
+    <colgroup>
+        <col width="650">
+    </colgroup>
+    <tbody class="tbody td">
+    <tr>
+        <td style="font-weight: bold; padding: 0px 0px 10px 0px;"> RESPONSÁVEIS SOLIDÁRIOS</td>
+    </tr> <!--RESP. SOLIDÁRIOS-->
+    {% if contrato_IRep !='' %}
+    <tr>
+        <td>Nome: <a style="font-weight: bold"> {{ contrato_IRep }}</a></td>
+        <td>CPF/MF: <a style="font-weight: bold"> {{ contrato_ICnpjcpf }}</a></td>
+    </tr>
+    {% endif %}
+    {% if contrato_IIRep !='' %}
+    <tr>
+        <td>Nome: <a style="font-weight: bold"> {{ contrato_IIRep }}</a></td>
+        <td>CPF/MF: <a style="font-weight: bold"> {{ contrato_IICnpjcpf }}</a></td>
+    </tr>
+    {% endif %}
+    {% if contrato_IIIRep !='' %}
+    <tr>
+        <td>Nome: <a style="font-weight: bold"> {{ contrato_IIIRep }}</a></td>
+        <td>CPF/MF: <a style="font-weight: bold"> {{ contrato_IIICnpjcpf }}</a></td>
+    </tr>
+    {% endif %}
+    {% if contrato_IVRep !='' %}
+    <tr>
+        <td>Nome: <a style="font-weight: bold"> {{ contrato_IVRep }}</a></td>
+        <td>CPF/MF: <a style="font-weight: bold"> {{ contrato_IVCnpjcpf }}</a></td>
+    </tr>
+    {% endif %}
+    {% if contrato_VRep !='' %}
+    <tr>
+        <td>Nome: <a style="font-weight: bold"> {{ contrato_VRep }}</a></td>
+        <td>CPF/MF: <a style="font-weight: bold"> {{ contrato_VCnpjcpf }}</a></td>
+    </tr>
+    {% endif %}
+    {% if contrato_VIRep !='' %}
+    <tr>
+        <td>Nome: <a style="font-weight: bold"> {{ contrato_VIRep }}</a></td>
+        <td>CPF/MF: <a style="font-weight: bold"> {{ contrato_VICnpjcpf }}</a></td>
+    </tr>
+    {% endif %}
+    </tbody>
+</table>
+
+<!--Fomento Mercantil-->
+<div>
+    <p class="padrao" style="text-align: center; color: #0000ff; font-weight: bold;">
+        <em> FOMENTO MERCANTIL CONVENCIONAL – ( compra de creditos mediante endosso com pagamento à vista )</em>
+    </p>
+
+    <table style="font-family: arial, sans-serif; border-collapse: collapse; width: 100%">
+        <thead>
+        <tr>
+            {% for h in d %}
+                {% for k in header_grid %}
+                <th class="th_grid" style="text-align: {{ k }} ">
+                    {{ h }}
+                </th>
+                {% endfor %}
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in range(d['SACADO']|count) %}
+        <tr>
+            {% for k in d %}
+                <td class="td_grid">{{ d[k][i] }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <!--<table>-->
+    <!--{% for item in my_list %}-->
+    <!--<TR>-->
+    <!--<TD class="c2">{{item.Sacado}}</TD>-->
+    <!--<TD class="c3">{{item.Titulo}}</TD>-->
+    <!--<TD class="c4"><SPAN>{{item.Documento}}</SPAN></TD>-->
+    <!--<TD class="c5"><SPAN>{{item.Valor}}</SPAN></TD>-->
+    <!--</TR>-->
+    <!--{% endfor %}-->
+    <!--</table>-->
+
+</div>
+</body>
+</html>

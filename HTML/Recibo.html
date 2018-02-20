@@ -86,6 +86,8 @@
 
 
 
+
+
     </style>
 </head>
 <body>
@@ -146,33 +148,60 @@
     <tr>
         <td style="font-weight: bold; padding: 0px 0px 10px 0px;"> RESPONSÁVEIS SOLIDÁRIOS</td>
     </tr> <!--RESP. SOLIDÁRIOS-->
+    {% if contrato_IRep !='' %}
     <tr>
         <td>Nome: <a style="font-weight: bold"> {{ contrato_IRep }}</a></td>
         <td>CPF/MF: <a style="font-weight: bold"> {{ contrato_ICnpjcpf }}</a></td>
     </tr>
+    {% endif %}
+    {% if contrato_IIRep !='' %}
     <tr>
         <td>Nome: <a style="font-weight: bold"> {{ contrato_IIRep }}</a></td>
         <td>CPF/MF: <a style="font-weight: bold"> {{ contrato_IICnpjcpf }}</a></td>
     </tr>
+    {% endif %}
+    {% if contrato_IIIRep !='' %}
     <tr>
         <td>Nome: <a style="font-weight: bold"> {{ contrato_IIIRep }}</a></td>
         <td>CPF/MF: <a style="font-weight: bold"> {{ contrato_IIICnpjcpf }}</a></td>
     </tr>
+    {% endif %}
+    {% if contrato_IVRep !='' %}
     <tr>
         <td>Nome: <a style="font-weight: bold"> {{ contrato_IVRep }}</a></td>
         <td>CPF/MF: <a style="font-weight: bold"> {{ contrato_IVCnpjcpf }}</a></td>
     </tr>
+    {% endif %}
+    {% if contrato_VRep !='' %}
     <tr>
         <td>Nome: <a style="font-weight: bold"> {{ contrato_VRep }}</a></td>
         <td>CPF/MF: <a style="font-weight: bold"> {{ contrato_VCnpjcpf }}</a></td>
     </tr>
+    {% endif %}
+    {% if contrato_VIRep !='' %}
     <tr>
         <td>Nome: <a style="font-weight: bold"> {{ contrato_VIRep }}</a></td>
         <td>CPF/MF: <a style="font-weight: bold"> {{ contrato_VICnpjcpf }}</a></td>
     </tr>
+    {% endif %}
     </tbody>
-
 </table>
+
+<!--Fomento Mercantil-->
+<div>
+    <p class="padrao" style="text-align: center; color: #0000ff; font-weight: bold;">
+        <em> FOMENTO MERCANTIL CONVENCIONAL – ( compra de creditos mediante endosso com pagamento à vista )</em>
+    </p>
+    <table>
+        {%- for row in items|batch(3, '&nbsp;') %}
+        <tr>
+            {%- for column in row %}
+            <td>{{ column }}</td>
+            {%- endfor %}
+        </tr>
+        {%- endfor %}
+    </table>
+</div>
 
 </body>
 </html>

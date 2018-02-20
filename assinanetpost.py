@@ -1,23 +1,32 @@
 import requests
 import base64
+import json
 
-def sendAssinaNetPost(params):
+def generateBase64encode(arquivo):
     try:
-        with open(params['RotaPDFGerado'], "rb") as pdf_file:
+        with open(arquivo, "rb") as pdf_file:
             encoded_string = base64.b64encode(pdf_file.read())
+        return encoded_string
+    except Exception as erro:
+        return 'Retorno do erro', erro
 
-        r = requests.post('http://localhost:5000/api/values',
-                          json={"NumeroDoLote": 10522,
-                                "Cliente": params['templateVars']['contrato_Cliente'],
-                                "Cedente": params['templateVars']['cedente_Empresa'],
-                                "Filename": encoded_string.decode('utf-8')
-                                })
-        #print(r.json())
+def sendAssinaNetPost(params, documentos):
+
+    # parametros a serem enviados via arquivo Json
+    http = 'http://localhost:5000/api/values/'
+    jsonparm = {"Cliente": params['templateVars']['cedente_Razao'],
+                "Cedente": params['templateVars']['cedente_Razao'],
+                "NumeroDaOperacao": params['templateVars']['operacao_Numero'],
+                "Documentos": json.dumps(documentos, ensure_ascii=False),
+                "Qtde": params['qtdeDoctos'],
+                "TipoDeDocumento": params['document']}
+    try:
+        r = requests.post(http, json=jsonparm)
+        print(r.json())
         return r.status_code
 
     except Exception as erro:
         return 'Retorno do erro', erro
-
 
 # import urllib
 # import oauth2
