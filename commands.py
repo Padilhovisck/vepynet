@@ -3,7 +3,7 @@ import json
 # Open File Json
 def openfilejson(filenameJson):
     try:
-        with open(filenameJson, 'r') as data_file:
+        with open(filenameJson, 'r', encoding="utf-8") as data_file:
             jsonobjectinfo = json.loads(data_file.read())
             return jsonobjectinfo
     except Exception as erro:

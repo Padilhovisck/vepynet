@@ -2,31 +2,35 @@ from assinanetpost import sendAssinaNetPost
 from contrato import Contrato
 from cedente import Cedente
 from operacao import Operacao
+from ItensdaOperacao import Itens
 from originador import Originador
 from atribuindovalores import attribuindovalores
 from converterHtmlToPDF import gerarAditivoPDF, gerarContratoPDF
 from commands import gravar_arquivo
 
+# monta lista dos itens a serem renderizados no HTML
+def itensdaoperacao(objson):
+    lista = {}
+    for k in (Itens.readHeader(objson)):
+        monta = (Itens.lendoItens(objson, k))
+        lista.update(monta)
+    return lista
+
+# monta lista de style do header HTML
+def styleHeader(objson):
+    style = ['left', 'left', 'center', 'center', 'right']
+    generico = {}
+    for i, k in enumerate(Itens.readHeader(objson)):
+        generico.update({k.upper(): style[i]})
+    return generico
+
 # alimenta classes com o arquivo Json
 def readjsonToClass(objson):
-    classes = {'contrato': Contrato(objson),
-               'cedente': Cedente(objson),
-               'operacao': Operacao(objson),
-               'itens': Operacao.flsItens(objson),
-               'originador': Originador(objson)
+    classes = {'contrato': Contrato(objson), 'cedente': Cedente(objson), 'itens': itensdaoperacao(objson),
+               'operacao': Operacao(objson), 'originador': Originador(objson), 'styleHeaderItens': styleHeader(objson)
                }
 
-    # d = {'Sacado': ['LAURINDA JARDIM DOS SANTOS', 'LAURINDA JARDIM DOS SANTOS'],
-    #      'Documento': ['DUPLICATA DE SERVICO', 'DUPLICATA DE SERVICO'],
-    #      'Titulo': ['ABC1','ABC2'],
-    #      'Vencimento': ['10/12/2016','10/01/2018'],
-    #      'Valor': ['9863.33', '1230.89']
-    #      }
-    #
-    # for i in range(len(d['Sacado'])):
-    #     for k in d:
-    #         print(d[k][i])
-
+    print(Itens.totaldaOperacao(objson))
 
     return classes
 
@@ -98,6 +102,8 @@ def resultSetData(params, objson):
         # alimenta classes com o arquivo json
         classes = readjsonToClass(objson)
 
+        return classes
+
         try:
             # chamando metodo de atribuição de valores ao HTML.
             objAtribuicao = attribuindovalores(classes, params)
@@ -137,7 +143,7 @@ def resultSetData(params, objson):
 
     elif int(params['document']) == 1:
 
-        params['templatehtml'] = 'Contrato.html'
+        params['templatehtml'] = 'contrato.html'
 
         # gerar arquivo PDF baseado no HTML passado.
         gerarContratoPDF(params)

@@ -200,36 +200,21 @@
     <table style="font-family: arial, sans-serif; border-collapse: collapse; width: 100%">
         <thead>
         <tr>
-            {% for h in d %}
-                {% for k in header_grid %}
-                <th class="th_grid" style="text-align: {{ k }} ">
-                    {{ h }}
-                </th>
-                {% endfor %}
+            {% for coluna, style in styleHeaderItens.items() %}
+                <th class="th_grid" style="text-align: {{ style }} ;"> {{ coluna }} </th>
             {% endfor %}
         </tr>
         </thead>
         <tbody>
-        {% for i in range(d['SACADO']|count) %}
+        {% for i in range(itens['SACADO']|count) %}
         <tr>
-            {% for k in d %}
-                <td class="td_grid">{{ d[k][i] }}</td>
+            {% for k in itens %}
+                <td class="td_grid"  style="text-align: {{ styleHeaderItens[k] }} ;">{{ itens[k][i] }}</td>
             {% endfor %}
         </tr>
         {% endfor %}
         </tbody>
     </table>
-    <!--<table>-->
-    <!--{% for item in my_list %}-->
-    <!--<TR>-->
-    <!--<TD class="c2">{{item.Sacado}}</TD>-->
-    <!--<TD class="c3">{{item.Titulo}}</TD>-->
-    <!--<TD class="c4"><SPAN>{{item.Documento}}</SPAN></TD>-->
-    <!--<TD class="c5"><SPAN>{{item.Valor}}</SPAN></TD>-->
-    <!--</TR>-->
-    <!--{% endfor %}-->
-    <!--</table>-->
-
 </div>
 </body>
 </html>

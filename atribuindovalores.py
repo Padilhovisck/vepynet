@@ -7,34 +7,31 @@ def attribuindovalores(classes, params):
 
     # recupera dados das classes
     contrato = classes['contrato']
-    cedente  = classes['cedente']
+    cedente = classes['cedente']
     operacao = classes['operacao']
-    itens    = classes['itens']
+    itens = classes['itens']
+    styleHeaderItens = classes['styleHeaderItens']
 
-    teste = [['LAURINDA   JARDIM DOS SANTOS', 'DUPLICATAS SERVIÃ‡OS', 'ABC1', '10/12/2016', 9863.33],
-            ['LAURINDA   JARDIM DOS SANTOS', 'DUPLICATAS SERVIÃ‡OS', 'ABC2', '10/12/2016', 9863.33]]
-
-    d = {'SACADO': ['LAURINDA JARDIM DOS SANTOS', 'LAURINDA JARDIM DOS SANTOS'],
-         'DOCUMENTO': ['DUPLICATA DE SERVICO', 'DUPLICATA DE SERVICO'],
-         'TITULO': ['ABC1', 'ABC2'],
-         'VENCIMENTO': ['10/12/2016', '10/01/2018'],
-         'VALOR': ['9863.33', '1230.89']
-         }
-
-    headerpos = {'left', 'left', 'center', 'center', 'right'}
+    #EXEMPLO
+    # d = {'Sacado': ['LAURINDA JARDIM DOS SANTOS', 'LAURINDA JARDIM DOS SANTOS'],
+    #      'Documento': ['DUPLICATA DE SERVICO', 'DUPLICATA DE SERVICO'],
+    #      'Titulo': ['ABC1','ABC2'],
+    #      'Vencimento': ['10/12/2016','10/01/2018'],
+    #      'Valor': ['9863.33', '1230.89']
+    #      }
 
     #header grid itens
-    icount = 0
-    for k in itens:
-        icount += 1
-        if icount == 1:
-            header = (k.keys())
-
-    # itend do grid
-    listaDoGrid = []
-    for k in itens:
-        for item in (list(k.values())):
-            listaDoGrid.append(item)
+    # icount = 0
+    # for k in itens:
+    #     icount += 1
+    #     if icount == 1:
+    #         header = (k.keys())
+    #
+    # # itend do grid
+    # listaDoGrid = []
+    # for k in itens:
+    #     for item in (list(k.values())):
+    #         listaDoGrid.append(item)
 
     # Atribuir valores a serem renderizados!
     valoresAtribuidos = {
@@ -66,8 +63,9 @@ def attribuindovalores(classes, params):
         "operacao_Numero":  operacao.Numero,
 
         # Itens
-        "header_grid": headerpos,
-        "d": d}
+        "itens": itens,
+        "styleHeaderItens": styleHeaderItens
+    }
 
     # Adiciona ao dicionario
     params["templateVars"] = valoresAtribuidos

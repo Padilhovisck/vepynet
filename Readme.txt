@@ -8,4 +8,4 @@
 
 [EXEMPLO] - Prompt de comando:
 
-...\main.exe 0 "nomedoarquivo.pdf" "...\vepynet\File\linha.json" "...\vepynet\bin\wkhtmltopdf.exe"
+...\vepynet.exe 0 "nomedoarquivo.pdf" "...\vepynet\File\linha.json" "...\vepynet\bin\wkhtmltopdf.exe"

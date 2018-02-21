@@ -47,7 +47,6 @@ def render_html(params):
     templateEnv = jinja2.Environment(loader=templateLoader)
     template_file = 'HTML/' + params['templatehtml']
     template = templateEnv.get_template(template_file)
-    print(params['templateVars'])
     html = template.render(params['templateVars'])
     return html
 

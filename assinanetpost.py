@@ -11,6 +11,8 @@ def generateBase64encode(arquivo):
         return 'Retorno do erro', erro
 
 def sendAssinaNetPost(params, documentos):
+    return None
+    #print(params['qtdeDoctos'])
 
     # parametros a serem enviados via arquivo Json
     http = 'http://localhost:5000/api/values/'
@@ -21,6 +23,7 @@ def sendAssinaNetPost(params, documentos):
                 "Qtde": params['qtdeDoctos'],
                 "TipoDeDocumento": params['document']}
     try:
+
         r = requests.post(http, json=jsonparm)
         print(r.json())
         return r.status_code
