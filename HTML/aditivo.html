@@ -92,6 +92,16 @@
                  font-weight: bold;
                  text-align: left;
              }
+             .new-page {
+                page-break-before: always;
+              }
+             .div.new-section {
+                page-break-inside: avoid;
+             }
+
+
+
+
     </style>
 </head>
 <body>
@@ -123,6 +133,7 @@
     </tbody>
 </table>
 <br>
+
 <!--CONTRATADA-->
 <table>
     <colgroup>
@@ -143,6 +154,7 @@
     </tbody>
 </table>
 <br>
+
 <!--RESP. SOLIDÁRIOS-->
 <table>
     <colgroup>
@@ -196,12 +208,15 @@
     <p class="padrao" style="text-align: center; color: #0000ff; font-weight: bold;">
         <em> FOMENTO MERCANTIL CONVENCIONAL – ( compra de creditos mediante endosso com pagamento à vista )</em>
     </p>
+</div>
 
+<!--Tabela do Grid-->
+<div>
     <table style="font-family: arial, sans-serif; border-collapse: collapse; width: 100%">
         <thead>
         <tr>
             {% for coluna, style in styleHeaderItens.items() %}
-                <th class="th_grid" style="text-align: {{ style }} ;"> {{ coluna }} </th>
+            <th class="th_grid" style="text-align: {{ style }} ;"> {{ coluna }}</th>
             {% endfor %}
         </tr>
         </thead>
@@ -209,12 +224,254 @@
         {% for i in range(itens['SACADO']|count) %}
         <tr>
             {% for k in itens %}
-                <td class="td_grid"  style="text-align: {{ styleHeaderItens[k] }} ;">{{ itens[k][i] }}</td>
+            <td class="td_grid" style="text-align: {{ styleHeaderItens[k] }} ;">{{ itens[k][i] }}</td>
             {% endfor %}
         </tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
+
+<!--Quebra em um nova pagina -->
+<div class="new-page">
+
+    <!--Total do Bordero-->
+    <div>
+        <p class="padrao" style="text-align: center; font-weight: bold;"> Total do Bordero: {{ itensTotal }} </p>
+    </div>
+
+    <!--Continua Texto-->
+    <div>
+        <table class="padrao" width="100%">
+            <tr>
+                <td>
+                    <p style="line-height: 1.6; text-align: justify;">
+                        O presente Termo Aditivo é formalizado de acordo com as condições e cláusulas estipuladas no
+                        Contrato de Fomento Mercantil n&ordm; <a style="font-weight: bold;"> {{
+                        cedente_NumeroContratoMae
+                        }}</a>, firmado em <a style="font-weight: bold;"> {{ cedente_Dtcontrato }} </a>, o qual a
+                        <a style="font-weight: bold;"> CONTRATANTE</a>, a <a style="font-weight: bold;"> CONTRATADA </a>
+                        e os <a style="font-weight: bold;"> RESPONSÁVEIS SOLIDÁRIOS </a> ratificam em sua plenitude.
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p style="line-height: 1.6; text-align: justify;">
+                        A <a style="font-weight: bold;"> CONTRATADA recebe</a>, neste ato, a documentação referente aos
+                        títulos relacionados no preâmbulo deste instrumento, responsabilizando-se a
+                        <a style="font-weight: bold;"> CONTRATANTE</a> por sua legitimidade, legalidade e veracidade e
+                        ainda
+                        pela prestação constante do(s) título(s), ora negociado(s), de acordo com as clausulas 12, 18,
+                        19 e
+                        20 do contrato acima referido.
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p style="line-height: 1.6; text-align: justify;">
+                        A <a style="font-weight: bold;"> CONTRATANTE </a> poderá facultar a entrega posterior da
+                        referida
+                        documentação, ficando a <a style="font-weight: bold;"> CONTRATANTE </a> ciente de que a não
+                        entrega,
+                        configurará o crime de apropriação indébito dos valores que lhe forem creditados.
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p style="line-height: 1.6; text-align: justify;">
+                        Por este instrumento acertam o preço pelos quais os títulos estão sendo adquiridos, bem como a
+                        remuneração pelos serviços prestados pela <a style="font-weight: bold;"> CONTRATADA</a>,
+                        conforme a
+                        seguir se demonstra:
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!--Quadro de fechamento-->
+    <table class="padrao" width="100%">
+        <!--Face-->
+        <tr>
+            <td><p style="line-height: 0.1; text-align: left;">
+                I - Valor de face dos títulos de crédito negociados :</p>
+            </td>
+            <td><p style="line-height: 0.1; text-align: right; margin-right: 80px;"> {{ Face }}</p></td>
+        </tr>
+        <!--Compra-->
+        <tr>
+            <td>
+                <p style="line-height: 0.1; text-align: left;"> II - Valor de aquisição dos títulos de crédito
+                    negociados:
+                </p>
+            </td>
+            <td><p style="line-height: 0.1; text-align: right; margin-right: 80px;"> {{ Compra }} </p>
+            </td>
+        </tr>
+        <!--Deduções-->
+        <tr>
+            <td><p style="line-height: 0.1; text-align: left;"> III - Deduções : </p></td>
+            <td><p style="line-height: 0.1; text-align: left;"></p></td>
+        </tr>
+        <!--Despesa com Serviços-->
+        <tr>
+            <td><p style="line-height: 0.1; text-align: left;"> 1ª - Despesas de Serviço : </p></td>
+            <td><p style="line-height: 0.1; text-align: right; margin-right: 80px;">
+                {{ Despesas_Adicional_Servico }} </p></td>
+        </tr>
+        <!--Advalorem-->
+        <tr>
+            <td><p style="line-height: 0.1; text-align: left;">
+                2ª. Comissão de prestação de serviços (ad valorem) / N. FISCAL : </p>
+            </td>
+            <td><p style="line-height: 0.1; text-align: right; margin-right: 80px;"> {{ Advalorem }} </p></td>
+        </tr>
+        <!--IRRF-->
+        <tr>
+            <td><p style="line-height: 0.1; margin-left: 250px;">
+                IRRF 1.50% {{ percentualAdvalorem }}
+            </p>
+            </td>
+            <td><p style="line-height: 0.1; text-align: left;"></p></td>
+        </tr>
+        <!--Diferenca-->
+        <tr>
+            <td><p style="line-height: 0.1; text-align: left;"> 3ª. Diferencial na compra dos títulos (fator) : </p>
+            </td>
+            <td><p style="line-height: 0.1; text-align: right; margin-right: 80px;">
+                {{ face_menos_Compra }} </p></td>
+        </tr>
+        <!--desembolso-->
+        <tr>
+            <td><p style="line-height: 0.1; text-align: left;"> IV - DESEMBOLSO LIQUIDO C/ IOF </p></td>
+            <td><p style="line-height: 0.1; text-align: right; margin-right: 80px;">
+                {{ Iof_mais_liquido }} </p></td>
+        </tr>
+        <!--IOF-->
+        <tr>
+            <td><p style="line-height: 0.1; text-align: left;"> V - IOF retido (IN Nº 05/98 e IN Nº 46/01 - SRF)</p>
+            </td>
+            <td><p style="line-height: 0.1; text-align: right; margin-right: 80px;"> {{ IOF }} </p></td>
+        </tr>
+        <!--Desembolso sem IOF-->
+        <tr>
+            <td><p style="line-height: 0.1; text-align: left;"> VI - DESEMBOLSO LIQUIDO S/ IOF </p></td>
+            <td><p style="line-height: 0.1; text-align: right; margin-right: 80px;">
+                {{ desembolso_menos_iof }} </p></td>
+        </tr>
+        <!--Liquido-->
+        <tr>
+            <td><p style="line-height: 0.1; text-align: left;"> VII - Desembolso líquido pago à Contratante : </p></td>
+            <td><p style="line-height: 0.1; text-align: right; margin-right: 80px;"> {{ liquido }} </p></td>
+        </tr>
+        <!--ISS-->
+        <tr>
+            <td><p style="line-height: 0.1; text-align: left;"> I.S.S. A RECOLHER : </p></td>
+            <td><p style="line-height: 0.1; text-align: right; margin-right: 80px;"> {{ ISS }} </p></td>
+        </tr>
+        <!--Tributos-->
+        <tr>
+            <td><p style="line-height: 0.1; text-align: left;">
+                Os tributos retidos (item III deverão ser recolhidos pela contratante na forma da Lei Nº 10.833/03) </p>
+            </td>
+            <td><p style="line-height: 0.1; text-align: left;"></p></td>
+        </tr>
+        <!--Cidade-->
+        <tr>
+            <td><p style="line-height: 2.0; text-align: left;"> {{ dataporextenso }} </p></td>
+            <td><p style="line-height: 0.1; text-align: left;"></p></td>
+        </tr>
+    </table>
+
+    <br>
+
+    <!--Assinaturas-->
+    <table class="padrao" width="100%">
+
+        <!--CONTRATANTE E CONTRATADA-->
+        <tr>
+            <td width="50%">
+                <hr width="90%">
+                <p align="center"> {{ cedente_Razao }} </p>
+                <p align="center" style="line-height: 0.1;"> CONTRATANTE </p>
+            </td>
+            </td>
+            <td width="50%">
+                <hr width="90%">
+                <p align="center"> {{ contrato_Cliente }} </p>
+                <p align="center" style="line-height: 0.1;"> CONTRATADA </p>
+            </td>
+        </tr>
+
+        <!--REPRESENTANTES I E II-->
+        {% if contrato_IRep !='' %}
+        <tr height="120px">
+            <td width="50%">
+                <hr width="90%">
+                <p align="center"> {{ contrato_IRep }} </p>
+                <p align="center" style="line-height: 0.1;"> Responsável Solidário </p>
+            </td>
+            </td>
+            <td width="50%">
+                <hr width="90%">
+                <p align="center"> {{ contrato_IIRep }} </p>
+                <p align="center" style="line-height: 0.1;"> Responsável Solidário </p>
+            </td>
+        </tr>
+        {% endif %}
+
+        <!--REPRESENTANTES III E IV-->
+        {% if contrato_IIIRep !='' %}
+        <tr height="60px">
+            <td width="50%">
+                <hr width="90%">
+                <p align="center"> {{ contrato_IIIRep }} </p>
+                <p align="center" style="line-height: 0.1;"> Responsável Solidário </p>
+            </td>
+            </td>
+            <td width="50%">
+                <hr width="90%">
+                <p align="center"> {{ contrato_IVRep }} </p>
+                <p align="center" style="line-height: 0.1;"> Responsável Solidário </p>
+            </td>
+        </tr>
+        {% endif %}
+
+        <!--REPRESENTANTES V E VI-->
+        {% if contrato_VRep !='' %}
+        <tr height="120px">
+            <td width="50%">
+                <hr width="90%">
+                <p align="center"> {{ contrato_VRep }} </p>
+                <p align="center" style="line-height: 0.1;"> Responsável Solidário </p>
+            </td>
+            </td>
+            <td width="50%">
+                <hr width="90%">
+                <p align="center"> {{ contrato_VIRep }} </p>
+                <p align="center" style="line-height: 0.1;"> Responsável Solidário </p>
+            </td>
+        </tr>
+        {% endif %}
+
+        <!--TESTEMUNHAS-->
+        <tr height="60px">
+            <td width="50%">
+                <hr width="90%">
+                <p align="center"> TESTEMUNHA </p>
+            </td>
+            </td>
+            <td width="50%">
+                <hr width="90%">
+                <p align="center"> TESTEMUNHA </p>
+            </td>
+        </tr>
+
+    </table>
+</div>
+
 </body>
 </html>

@@ -1,0 +1,1 @@
+vepynet.exe 0 [1-1] "OurolacOp100.pdf" "C:\Users\eduar\PycharmProjects\vepynet\build\vepynet\File\AditivoOurolacOp100.json" "C:\Users\eduar\PycharmProjects\vepynet\bin\wkhtmltopdf.exe"

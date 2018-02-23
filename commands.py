@@ -1,5 +1,35 @@
 import json
 
+# data por extenso
+def dataextenso(datestring):
+    months = {'1': 'Janeiro', '2': 'Fevereiro', '3': 'Março', '4': 'Abril',
+                '5': 'Maio', '6': 'Junho', '7': 'Julho', '8': 'Agosto',
+                '9': 'Setembro', '10': 'Outubro', '11': 'Novembro', '12': 'Dezembro'
+              }
+    day, month, year = datestring.split('/')
+    dia = int(day)
+    mes = int(month)
+    ano = int(year)
+    montastring = (str(dia) + ' de ' + months.get(str(mes)) + ' de ' + str(ano))
+    return montastring
+
+# formatar lista no padrao pt-br
+def formatarValoresRealBR(key, columnName):
+    itensformatado = []
+    lista = key
+    for k in lista.get(columnName, ""):
+        itensformatado.append((real_br_money_mask(k)))
+    del lista[columnName]
+    lista.update({columnName: itensformatado})
+    return lista
+
+# formata 1 valor no padrao pt-br
+def real_br_money_mask(my_value):
+    a = '{:,.2f}'.format(float(my_value))
+    b = a.replace(',', 'v')
+    c = b.replace('.', ',')
+    return c.replace('v', '.')
+
 # Open File Json
 def openfilejson(filenameJson):
     try:

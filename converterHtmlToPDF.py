@@ -33,9 +33,26 @@ def encoded_string(params):
 
 #criando o arquivo PDF
 def create_PDF(html, params):
+    options = {
+        'page-size': 'A4',
+        'margin-top': '0.24in',
+        'margin-right': '0.30in',
+        'margin-bottom': '0.24in',
+        'margin-left': '0.30in',
+        'encoding': "UTF-8",
+        'header-line': None,
+        'header-spacing': 2,
+        'footer-font-size': '8',
+        'footer-font-name': 'Arial, Helvetica, sans-serif',
+        'footer-line': None,
+        'footer-spacing': 2,
+        'footer-right': '[page]',
+        'no-outline': None,
+    }
+
     path_wkthmltopdf = params['wkhtmltopdf']
     config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
-    pdf = pdfkit.from_string(html, ("Pdf\\"+params['namefilepdf']), configuration=config)
+    pdf = pdfkit.from_string(html, ("Pdf\\"+params['namefilepdf']), configuration=config, options=options)
     if pdf:
         gravar_arquivo('log.txt', 'Aditivo gerado com sucesso!')
         gravar_arquivo('log.txt', 'Chamando API (POST)...')

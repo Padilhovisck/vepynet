@@ -3,6 +3,16 @@ class Operacao:
     def __init__(self, jsonobj):
         self.Numero = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['Numero'])
         self.Proposta = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['Proposta'])
+        self.Data = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['Data'])
+        self.Face = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['Face'])
+        self.Compra = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['Compra'])
+        self.DepServico = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['Despservico'])
+        self.DesAdicional = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['Despadicional'])
+        self.Advalorem = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['Advalorem'])
+        self.PercAdvalorem = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['PercAdvalorem'])
+        self.IOF = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['Iof'])
+        self.Liquido = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['Liquido'])
+        self.ISS = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['Iss'])
 
     def flsItens(objson):
         lsItens = []

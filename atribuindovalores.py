@@ -1,4 +1,5 @@
-from commands import gravar_arquivo
+from commands import gravar_arquivo, real_br_money_mask, dataextenso
+
 
 #metodo das classes de importação para Aditivo
 def attribuindovalores(classes, params):
@@ -10,7 +11,16 @@ def attribuindovalores(classes, params):
     cedente = classes['cedente']
     operacao = classes['operacao']
     itens = classes['itens']
+    itensTotal = classes['totalDosItens']
     styleHeaderItens = classes['styleHeaderItens']
+
+    # somando
+    c = (float(operacao.DesAdicional)) + (float(operacao.DepServico))
+    desembolso = (float(operacao.IOF)) + (float(operacao.Liquido))
+
+    # subtraindo
+    facemenoscompra = (float(operacao.Face)) - (float(operacao.Compra))
+    desembolsosemiof= (desembolso - (float(operacao.IOF)))
 
     #EXEMPLO
     # d = {'Sacado': ['LAURINDA JARDIM DOS SANTOS', 'LAURINDA JARDIM DOS SANTOS'],
@@ -37,7 +47,7 @@ def attribuindovalores(classes, params):
     valoresAtribuidos = {
 
         # Cedente
-        "cedente_Razao"             : cedente.Razao,
+        "cedente_Razao"             : cedente.Razao.upper(),
         "cedente_Cnpjcpf"           : cedente.Cnpjcpf,
         "cedente_Dtcontrato"        : cedente.Dtcontrato,
         "cedente_NumeroContratoMae" : cedente.NumeroContratoMae,
@@ -58,13 +68,28 @@ def attribuindovalores(classes, params):
         "contrato_VCnpjcpf"  : contrato.Rep5CnpjCpf,
         "contrato_VIRep"     : contrato.Rep6Nome.upper(),
         "contrato_VICnpjcpf" : contrato.Rep6CnpjCpf,
+        "dataporextenso": (contrato.Cidade + ' ' + dataextenso(operacao.Data)),
 
         # Operacao
         "operacao_Numero":  operacao.Numero,
+        "Face": real_br_money_mask(operacao.Face),
+        "Compra": real_br_money_mask(operacao.Compra),
+        "Despesa_Servico": real_br_money_mask(operacao.DepServico),
+        "Despesa_Adicional": real_br_money_mask(operacao.DesAdicional),
+        "Despesas_Adicional_Servico": real_br_money_mask(c),
+        "Advalorem": real_br_money_mask(operacao.Advalorem),
+        "percentualAdvalorem": real_br_money_mask(operacao.PercAdvalorem),
+        "face_menos_Compra": real_br_money_mask(facemenoscompra),
+        "Iof_mais_liquido": real_br_money_mask(desembolso),
+        "IOF": real_br_money_mask(operacao.IOF),
+        "desembolso_menos_iof": real_br_money_mask(desembolsosemiof),
+        "liquido": real_br_money_mask(operacao.Liquido),
+        "ISS": real_br_money_mask(operacao.ISS),
 
         # Itens
         "itens": itens,
-        "styleHeaderItens": styleHeaderItens
+        "styleHeaderItens": styleHeaderItens,
+        "itensTotal": itensTotal
     }
 
     # Adiciona ao dicionario

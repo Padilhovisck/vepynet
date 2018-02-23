@@ -4,6 +4,7 @@ class Contrato:
         self.Cliente = (jsonobj['CONTRATO']['Cliente'])
         self.CnpjCpf = (jsonobj['CONTRATO']['Cnpjcpf'])
         self.Registro = (jsonobj['CONTRATO']['Registro'])
+        self.Cidade = (jsonobj['CONTRATO']['Cidade'])
         self.Rep1Nome = (jsonobj['CONTRATO']['IRep'])
         self.Rep1CnpjCpf = (jsonobj['CONTRATO']['ICnpjcpf'])
         self.Rep2Nome = (jsonobj['CONTRATO']['IIRep'])

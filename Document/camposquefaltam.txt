@@ -1,0 +1,6 @@
+# JSON: PercAdvalorem
+# percentual de advalorem
+if cedente.Ces1 == 'S' and operacao.Selecao < 0:
+    percentualDeAdvalorem = 0
+else:
+    percentualDeAdvalorem = ((operacao.Advalorem * 1.50) / 100.00)

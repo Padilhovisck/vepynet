@@ -6,32 +6,18 @@ from ItensdaOperacao import Itens
 from originador import Originador
 from atribuindovalores import attribuindovalores
 from converterHtmlToPDF import gerarAditivoPDF, gerarContratoPDF
-from commands import gravar_arquivo
+from commands import gravar_arquivo, formatarValoresRealBR
 
-# monta lista dos itens a serem renderizados no HTML
-def itensdaoperacao(objson):
-    lista = {}
-    for k in (Itens.readHeader(objson)):
-        monta = (Itens.lendoItens(objson, k))
-        lista.update(monta)
-    return lista
-
-# monta lista de style do header HTML
-def styleHeader(objson):
-    style = ['left', 'left', 'center', 'center', 'right']
-    generico = {}
-    for i, k in enumerate(Itens.readHeader(objson)):
-        generico.update({k.upper(): style[i]})
-    return generico
 
 # alimenta classes com o arquivo Json
 def readjsonToClass(objson):
-    classes = {'contrato': Contrato(objson), 'cedente': Cedente(objson), 'itens': itensdaoperacao(objson),
-               'operacao': Operacao(objson), 'originador': Originador(objson), 'styleHeaderItens': styleHeader(objson)
+    classes = {'contrato': Contrato(objson), 'cedente': Cedente(objson), 'operacao': Operacao(objson),
+               'originador': Originador(objson),
+               # 'itens': formatarValoresRealBR((Itens.itensdaoperacaoGridHtml(objson)), 'VALOR'),
+               'itens': (Itens.itensdaoperacaoGridHtml(objson)),
+               'totalDosItens': Itens(objson).Total, 'styleHeaderItens': Itens.styleHeader(objson)
                }
-
-    print(Itens.totaldaOperacao(objson))
-
+    #print((Itens.itensdaoperacaoGridHtml(objson)))
     return classes
 
 # logica de documento de Contrato
@@ -101,8 +87,6 @@ def resultSetData(params, objson):
 
         # alimenta classes com o arquivo json
         classes = readjsonToClass(objson)
-
-        return classes
 
         try:
             # chamando metodo de atribuição de valores ao HTML.
