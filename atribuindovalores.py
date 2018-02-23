@@ -22,27 +22,6 @@ def attribuindovalores(classes, params):
     facemenoscompra = (float(operacao.Face)) - (float(operacao.Compra))
     desembolsosemiof= (desembolso - (float(operacao.IOF)))
 
-    #EXEMPLO
-    # d = {'Sacado': ['LAURINDA JARDIM DOS SANTOS', 'LAURINDA JARDIM DOS SANTOS'],
-    #      'Documento': ['DUPLICATA DE SERVICO', 'DUPLICATA DE SERVICO'],
-    #      'Titulo': ['ABC1','ABC2'],
-    #      'Vencimento': ['10/12/2016','10/01/2018'],
-    #      'Valor': ['9863.33', '1230.89']
-    #      }
-
-    #header grid itens
-    # icount = 0
-    # for k in itens:
-    #     icount += 1
-    #     if icount == 1:
-    #         header = (k.keys())
-    #
-    # # itend do grid
-    # listaDoGrid = []
-    # for k in itens:
-    #     for item in (list(k.values())):
-    #         listaDoGrid.append(item)
-
     # Atribuir valores a serem renderizados!
     valoresAtribuidos = {
 
