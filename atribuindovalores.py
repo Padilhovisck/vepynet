@@ -1,7 +1,8 @@
-from commands import gravar_arquivo, real_br_money_mask, dataextenso
-
-
 #metodo das classes de importação para Aditivo
+from commands import gravar_arquivo, real_br_money_mask, dataextenso
+from extenso import NumeroPorExtenso
+
+
 def attribuindovalores(classes, params):
 
     gravar_arquivo('log.txt', ('Criando variaves para substituição no arquivo HTML.'))
@@ -13,6 +14,11 @@ def attribuindovalores(classes, params):
     itens = classes['itens']
     itensTotal = classes['totalDosItens']
     styleHeaderItens = classes['styleHeaderItens']
+
+    # tratamento
+    numeroextenso = real_br_money_mask(operacao.Liberar)
+    numeroformatado = numeroextenso.replace('.', '').replace(',', '.')
+    e = NumeroPorExtenso(numeroformatado)
 
     # somando
     c = (float(operacao.DesAdicional)) + (float(operacao.DepServico))
@@ -63,6 +69,8 @@ def attribuindovalores(classes, params):
         "IOF": real_br_money_mask(operacao.IOF),
         "desembolso_menos_iof": real_br_money_mask(desembolsosemiof),
         "liquido": real_br_money_mask(operacao.Liquido),
+        "liberar": real_br_money_mask(operacao.Liberar),
+        "extenso": e.extenso_unidade,
         "ISS": real_br_money_mask(operacao.ISS),
 
         # Itens

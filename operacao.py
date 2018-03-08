@@ -12,6 +12,7 @@ class Operacao:
         self.PercAdvalorem = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['PercAdvalorem'])
         self.IOF = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['Iof'])
         self.Liquido = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['Liquido'])
+        self.Liberar = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['Liberar'])
         self.ISS = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['Iss'])
 
     def flsItens(objson):
