@@ -14,6 +14,7 @@ class Operacao:
         self.Liquido = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['Liquido'])
         self.Liberar = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['Liberar'])
         self.ISS = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['Iss'])
+        self.MaxDataItens = (jsonobj['CONTRATO']['CEDENTE']['OPERACAO']['MaxDataItens'])
 
     def flsItens(objson):
         lsItens = []

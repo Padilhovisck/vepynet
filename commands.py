@@ -1,5 +1,40 @@
 import json
 
+# valor por extenso
+from extenso import NumeroPorExtenso
+
+# valor por extenso
+def valorporextenso(valor):
+    numeroextenso = real_br_money_mask(valor)
+    numeroformatado = numeroextenso.replace('.', '').replace(',', '.')
+    return NumeroPorExtenso(numeroformatado)
+
+# dia , mes e ano por extenso
+def diaMesAnoExtenso(datestring, texto1, texto2):
+    days = {'1': 'Um', '2': 'Dois', '3': 'Três', '4': 'Quatro', '5': 'Cinco',
+            '6': 'Seis', '7': 'Sete', '8': 'Oito', '9': 'Nove', '10': 'Dez',
+            '11': 'Onze', '12': 'Doze', '13': 'Treze', '14': 'Quatorze', '15': 'Quinze',
+            '16': 'Dezesseis', '17': 'Dezessete', '18': 'Dezoito', '19': 'Dezenove', '20': 'Vinte',
+            '21': 'Vinte e um', '22': 'Vinte e dois', '23': 'Vinte e três', '24': 'Vinte e quatro',
+            '25': 'Vinte e cinco', '26': 'Vinte e seis', '27': 'Vinte e sete', '28': 'Vinte e oito',
+            '29': 'Vinte e nove', '30': 'Trinta', '31': 'Trinta e um'}
+
+    months = {'1': 'Janeiro', '2': 'Fevereiro', '3': 'Março', '4': 'Abril',
+                '5': 'Maio', '6': 'Junho', '7': 'Julho', '8': 'Agosto',
+                '9': 'Setembro', '10': 'Outubro', '11': 'Novembro', '12': 'Dezembro'
+              }
+
+    years = {'2018': 'de dois mil dezoito', '2019': 'de dois mil dezenove', '2020': 'de dois mil e vinte'}
+
+    day, month, year = datestring.split('/')
+
+    dia = int(day)
+    mes = int(month)
+    ano = int(year)
+
+    montastring = days.get(str(dia)) + texto1 + months.get(str(mes)) + texto2 + years.get(str(ano))
+    return montastring
+
 # data por extenso
 def dataextenso(datestring):
     months = {'1': 'Janeiro', '2': 'Fevereiro', '3': 'Março', '4': 'Abril',
@@ -33,9 +68,8 @@ def real_br_money_mask(my_value):
 # Open File Json
 def openfilejson(filenameJson):
     try:
-        with open(filenameJson, 'r', encoding="utf-8") as data_file:
-            jsonobjectinfo = json.loads(data_file.read())
-            return jsonobjectinfo
+        f = open(filenameJson, 'r')
+        return json.loads(f.read())
     except Exception as erro:
         return False
 

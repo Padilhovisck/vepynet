@@ -35,10 +35,10 @@ def encoded_string(params):
 def create_PDF(html, params):
     options = {
         'page-size': 'A4',
-        'margin-top': '0.24in',
-        'margin-right': '0.30in',
-        'margin-bottom': '0.24in',
-        'margin-left': '0.30in',
+        'margin-top': '0.5in',
+        'margin-right': '0.5in',
+        'margin-bottom': '0.5in',
+        'margin-left': '0.5in',
         'encoding': "UTF-8",
         'header-line': None,
         'header-spacing': 2,

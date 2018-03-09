@@ -7,4 +7,7 @@ class Cedente:
         self.Cnpjcpf = (jsonobj['CONTRATO']['CEDENTE']['Cnpjcpf'])
         self.Dtcontrato = (jsonobj['CONTRATO']['CEDENTE']['Dtcontrato'])
         self.NumeroContratoMae = (jsonobj['CONTRATO']['CEDENTE']['NumeroContratoMae'])
-        self.Ces1 = (jsonobj['CONTRATO']['CEDENTE']['Ces1'])
+        self.Endereco = (jsonobj['CONTRATO']['CEDENTE']['Endereco'])
+        self.Cep = (jsonobj['CONTRATO']['CEDENTE']['Cep'])
+        self.Cidade = (jsonobj['CONTRATO']['CEDENTE']['Cidade'])
+        self.Estado = (jsonobj['CONTRATO']['CEDENTE']['Estado'])

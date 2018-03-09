@@ -1,5 +1,5 @@
 #metodo das classes de importação para Aditivo
-from commands import gravar_arquivo, real_br_money_mask, dataextenso
+from commands import gravar_arquivo, real_br_money_mask, dataextenso, diaMesAnoExtenso, valorporextenso
 from extenso import NumeroPorExtenso
 
 
@@ -16,9 +16,8 @@ def attribuindovalores(classes, params):
     styleHeaderItens = classes['styleHeaderItens']
 
     # tratamento
-    numeroextenso = real_br_money_mask(operacao.Liberar)
-    numeroformatado = numeroextenso.replace('.', '').replace(',', '.')
-    e = NumeroPorExtenso(numeroformatado)
+    e = valorporextenso(operacao.Liberar)
+    np = valorporextenso(operacao.Face)
 
     # somando
     c = (float(operacao.DesAdicional)) + (float(operacao.DepServico))
@@ -28,21 +27,39 @@ def attribuindovalores(classes, params):
     facemenoscompra = (float(operacao.Face)) - (float(operacao.Compra))
     desembolsosemiof= (desembolso - (float(operacao.IOF)))
 
+    # extenso Nota Promissoria
+    dataporextensoMaxDataItens = diaMesAnoExtenso(operacao.MaxDataItens, ' dias do mês de ', ' do ano ')
+    dataporextensoDaProposta = diaMesAnoExtenso(operacao.MaxDataItens, ' de ', ' de ')
+
     # Atribuir valores a serem renderizados!
     valoresAtribuidos = {
 
         # Cedente
+        "cedente_Codigo": cedente.Codigo,
         "cedente_Razao"             : cedente.Razao.upper(),
         "cedente_Cnpjcpf"           : cedente.Cnpjcpf,
         "cedente_Dtcontrato"        : cedente.Dtcontrato,
         "cedente_NumeroContratoMae" : cedente.NumeroContratoMae,
+        "cedente_Endereco": cedente.Endereco.upper(),
+        "cedente_Cep": cedente.Cep,
+        "cedente_Cidade": cedente.Cidade.upper(),
+        "cedente_Estado": cedente.Estado.upper(),
 
         # Contrato
         "contrato_Cliente"   : contrato.Cliente.upper(),
         "contrato_Cnpjcpf"   : contrato.CnpjCpf,
         "contrato_Registro"  : contrato.Registro,
+        "contrato_Cidade"    : contrato.Cidade,
         "contrato_IRep"      : contrato.Rep1Nome.upper(),
         "contrato_ICnpjcpf"  : contrato.Rep1CnpjCpf,
+        "contrato_INascimento": contrato.Rep1Nascimento,
+        "contrato_IEcivil"   : contrato.Rep1EstadoCivil,
+        "contrato_IProfissao": contrato.Rep1Profissao,
+        "contrato_IRg"       : contrato.Rep1RG,
+        "contrato_IEndereco" : contrato.Rep1Endereco,
+        "contrato_ICidade"   : contrato.Rep1Cidade,
+        "contrato_IEstado"   : contrato.Rep1Estado,
+        "contrato_ICep"      : contrato.Rep1Cep,
         "contrato_IIRep"     : contrato.Rep2Nome.upper(),
         "contrato_IICnpjcpf" : contrato.Rep2CnpjCpf,
         "contrato_IIIRep"    : contrato.Rep3Nome.upper(),
@@ -72,6 +89,9 @@ def attribuindovalores(classes, params):
         "liberar": real_br_money_mask(operacao.Liberar),
         "extenso": e.extenso_unidade,
         "ISS": real_br_money_mask(operacao.ISS),
+        "MaxDataItens": operacao.MaxDataItens,
+        "dataporextensoMaxDataItens": dataporextensoMaxDataItens,
+        "extensonp": np.extenso_unidade,
 
         # Itens
         "itens": itens,

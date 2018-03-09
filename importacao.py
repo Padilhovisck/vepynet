@@ -18,6 +18,7 @@ def readjsonToClass(objson):
                'totalDosItens': Itens(objson).Total, 'styleHeaderItens': Itens.styleHeader(objson)
                }
     #print((Itens.itensdaoperacaoGridHtml(objson)))
+
     return classes
 
 # logica de documento de Contrato

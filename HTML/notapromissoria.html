@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Recibo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css">
+             body {
+                 font-weight: 200;
+                 font-size: 14px;
+             }
+             .header {
+                 font-size: 14px;
+                 font-weight: 100;
+                 text-align: center;
+                 color: #007cae;
+             }
+             .header p {
+                font-size: 18px;
+                font-weight: 100;
+                font-family: Arial, Helvetica, sans-serif;
+                width: auto;
+                height: auto;
+                border: 2px solid blue;
+                text-align: center;
+                color: #0000ff;
+             }
+             .title {
+                 font-size: 22px;
+                 font-weight: 100;
+                /* text-align: right;*/
+                padding: 10px 20px 0px 20px;
+             }
+             .title p {
+                 font-size: 18px;
+                 font-weight: 100;
+                 text-align: center;
+             }
+             .title span {
+                 color: #007cae;
+             }
+             .details {
+                 padding: 10px 20px 0px 20px;
+                 text-align: left !important;
+                 /*margin-left: 40%;*/
+             }
+             .hrItem {
+                 border: none;
+                 height: 1px;
+                 /* Set the hr color */
+                 color: #333; /* old IE */
+                 background-color: #fff; /* Modern Browsers */
+             }
+             .hr {
+                display: block;
+                margin-top: 0.5em;
+                margin-bottom: 0.5em;
+                margin-left: auto;
+                margin-right: auto;
+                border-style: inset;
+                border-width: 1px;
+                border-color: #0000ff;
+               }
+             p.borda2 {
+                text-align: center;
+                font-size: 18px;
+                font-weight: 100;
+                font-family: Arial, Helvetica, sans-serif;
+                letter-spacing: 10px;
+                color: #0000ff;
+             }
+             .tbody td {
+                 font-size: 14px;
+                 font-weight: 100;
+                 font-family: Arial, Helvetica, sans-serif;
+             }
+             .padrao {
+                 font-size: 14px;
+                 font-weight: 100;
+                 font-family: Arial, Helvetica, sans-serif;
+             }
+             .td_grid {
+                 border: 1px solid #dddddd;
+                 text-gn: left;
+                 padding: 8px;
+             }
+             .th_grid {
+                 border: 1px solid #dddddd;
+                 text-gn: left;
+                 padding: 8px;
+                 font-weight: bold;
+                 text-align: left;
+             }
+             .new-page {
+                page-break-before: always;
+              }
+             .div.new-section {
+                page-break-inside: avoid;
+             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+<!--NOTA PROMISSÓRIA-->
+<div style="line-height: 1.8">
+    <p class="borda2">NOTA PROMISSÓRIA</p>
+</div>
+
+<br>
+
+<!--Texto 1-->
+<div>
+    <table>
+        <colgroup>
+            <col width="800">
+        </colgroup>
+        <tbody class="tbody td">
+        <tr>
+            <td style="text-align: left;"> N&ordm; {{ cedente_Codigo }} / {{ operacao_Numero }}</td>
+            <td style="text-align: right; font-weight: bold;"> {{ Face }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--Texto 2-->
+<div>
+    <br>
+    <p class="padrao"> Vencimento em: {{ MaxDataItens }} </p>
+    <p class="padrao"> Aos {{ dataporextensoMaxDataItens }} </p>
+    <br>
+    &nbsp;
+    <p class="padrao" style="text-align: justify; line-height: 1.6; text-indent: 2.5em;">
+        Pagarei(emos) por esta única via de NOTA PROMISSORIA a {{ contrato_Cliente }},
+        C.N.P.J.: número {{ contrato_Cnpjcpf }}, Ou a sua ordem, a quantia de: {{ extensonp }}.
+    </p>
+    &nbsp;
+    <p class="padrao" style="line-height: 1.0"> Em moeda corrente deste país.</p>
+    <p class="padrao" style="line-height: 1.0"> Pagável em: {{ cedente_Cidade }} / UF: {{ cedente_Estado }}
+    </p>
+</div>
+
+<!--Texto 3-->
+&nbsp;
+<div>
+    <!--Eminente-->
+    <table width="100%">
+        <tr class="padrao">
+            <td width="5%" height="20%">Eminente:</td>
+            <td> {{ cedente_Endereco }} - {{ cedente_Cidade }} - {{ cedente_Estado }}</td>
+        </tr>
+        <tr class="padrao">
+            <td width="5%" height="20%"></td>
+            <td> CEP: {{ cedente_Cep }}</td>
+        </tr>
+        <tr class="padrao">
+            <td width="5%" height="20%"></td>
+            <td> CNPJ: {{ cedente_Cnpjcpf }}</td>
+        </tr>
+    </table>
+    <table width="100%">
+        <tr class="padrao">
+            <td width="50%" height="20%" align="right"></td>
+            <td align="right"> {{ dataporextenso }}</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <br>
+    <!--Assinaturas-->
+    <table class="padrao" width="100%">
+        <tr>
+            <td width="50%">
+                <hr width="90%">
+                <p align="center"> {{ cedente_Razao }} </p>
+            </td>
+            </td>
+            <td width="50%"></td>
+        </tr>
+    </table>
+</div>
+
+<br>
+<br>
+<div>
+    <!--Assinaturas-->
+    <table class="padrao" width="100%">
+        {% if contrato_IRep !='' %}
+        <tr>
+            <td width="100%">
+                <hr align="left" width="60%">
+                <p align="justify" style="line-height: 1.6;">
+                    {{ contrato_IRep }}, {{ contrato_INascimento }}(o), {{ contrato_IEcivil}}(o),
+                    {{ contrato_IProfissao }}, portador(a) da Cédula de Identidade RG nº {{ contrato_IRg }},
+                    e inscrito(a) no CPF/MF sob nº {{ contrato_ICnpjcpf }}, residente e domiciliado(a)
+                    {{ contrato_IEndereco }}, {{ contrato_ICidade }} {{ contrato_IEstado }}, CEP: {{ contrato_ICep }}
+                </p>
+            </td>
+            </td>
+            <td width="50%"></td>
+        </tr>
+        {% endif %}
+    </table>
+</div>
+
+</body>
+</html>

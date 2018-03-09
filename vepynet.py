@@ -19,6 +19,7 @@ if len(sys.argv) == 6:
                  'wkhtmltopdf': sys.argv[5]}
 
         retorno = openfilejson((parms['filejson']))
+
         if retorno == False:
             gravar_arquivo('log.txt', ('Abrindo arquivo Json <error:' + str(retorno) + '>'))
         else:

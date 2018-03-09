@@ -213,13 +213,11 @@
 <!--Tabela do Grid-->
 <div>
     <table style="font-family: arial, sans-serif; border-collapse: collapse; width: 100%">
-        <thead>
         <tr>
             {% for coluna, style in styleHeaderItens.items() %}
             <th class="th_grid" style="text-align: {{ style }} ;"> {{ coluna }}</th>
             {% endfor %}
         </tr>
-        </thead>
         <tbody>
         {% for i in range(itens['SACADO']|count) %}
         <tr>
